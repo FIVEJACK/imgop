@@ -1,0 +1,150 @@
+{
+  "root": true,
+  "extends": ["eslint:recommended"],
+  "parser": "@typescript-eslint/parser",
+  "plugins": ["@babel", "@typescript-eslint"],
+  "parserOptions": { "jsx": true },
+  "settings": {
+    "next": { "rootDir": "src" }
+  },
+  "rules": {
+    "eol-last": "warn",
+    "space-infix-ops": "warn",
+    "no-shadow": "off",
+    "@typescript-eslint/no-shadow": "warn",
+    "no-unneeded-ternary": "warn",
+    "no-nested-ternary": "warn",
+    "no-duplicate-imports": "warn",
+    "no-console": "warn",
+    "no-lonely-if": "warn",
+    "no-trailing-spaces": "error",
+    "no-prototype-builtins": "warn",
+    "no-multi-spaces": "warn",
+    "no-multiple-empty-lines": ["warn", { "max": 1, "maxEOF": 0 }],
+    "jsx-quotes": ["warn", "prefer-single"],
+    "block-spacing": "warn",
+    "keyword-spacing": ["warn", { "before": true, "after": true }],
+    "key-spacing": ["warn", { 
+      "singleLine": { "beforeColon": false, "afterColon": true }, 
+      "multiLine": { "beforeColon": false, "afterColon": true }}],
+    "arrow-spacing": "warn",
+    "func-call-spacing": "warn",
+    "generator-star-spacing": ["error", { "before": false, "after": true }],
+    "object-curly-spacing": ["error", "always"],
+    "object-curly-newline": ["error", { "consistent": true }],
+    "object-property-newline": ["warn", { "allowAllPropertiesOnSameLine": true }],
+    "space-before-blocks": "warn",
+    "space-before-function-paren": ["warn", { "anonymous": "never", "named": "never", "asyncArrow": "always"}],
+    "space-in-parens": "warn",
+    "array-bracket-spacing": ["error", "never"],
+    "array-bracket-newline": ["error", "consistent"],
+    "array-element-newline": ["error", "consistent"],
+    "indent": ["warn", 2, { "SwitchCase": 1 }],
+    "max-len": [ "warn", { "code": 180, "tabWidth": 2 } ],
+    "brace-style": ["error", "1tbs", { "allowSingleLine": true }],
+    "curly": ["warn", "multi-line"],
+    "template-curly-spacing": ["warn", "never"],
+    "dot-notation": "warn",
+    "arrow-parens": ["warn", "always"],
+    "quotes": ["error", "single"],
+    "comma-style": ["warn", "last"],
+    "comma-spacing": "warn",
+    "comma-dangle": ["warn", "always-multiline"],
+    "camelcase": "off",
+    "new-cap": "off",
+    "@babel/new-cap": ["error", { "newIsCapExceptions": ["model"] }],
+    "semi": "error",
+    "@babel/semi": "error",
+    "no-unused-vars": "off",
+    "@typescript-eslint/type-annotation-spacing": "warn",
+    "@typescript-eslint/no-unused-vars": ["error"],
+    "@typescript-eslint/naming-convention": [
+      "warn",
+      {
+        "selector": "default",
+        "format": ["camelCase"]
+      },
+      {
+        "selector": "variable",
+        "format": ["PascalCase"],
+        "filter": {
+          "regex": "([A-z]*)(Component|Element|View)$",
+          "match": true
+        }
+      },
+      {
+        "selector": "variable",
+        "format": ["camelCase"]
+      },
+      {
+        "selector": "variable",
+        "modifiers": ["exported"],
+        "format": ["UPPER_CASE", "PascalCase", "camelCase"]
+      },
+      {
+        "selector": "function",
+        "modifiers": ["exported"],
+        "format": ["camelCase", "PascalCase"]
+      },
+      { 
+        "selector": "property", 
+        "format": ["camelCase", "snake_case", "UPPER_CASE"] 
+      },
+      { 
+        "selector": "property", 
+        "modifiers": ["private"],
+        "format": ["camelCase", "snake_case", "UPPER_CASE"],
+        "leadingUnderscore": "require"
+      },
+      {
+        "selector": "memberLike",
+        "modifiers": ["private"],
+        "format": ["camelCase"],
+        "leadingUnderscore": "require"
+      },
+      {
+        "selector": "variableLike",
+        "format": ["camelCase"]
+      },
+      {
+        "selector": "typeLike",
+        "format": ["PascalCase"] 
+      },
+      {
+        "selector": "enum",
+        "format": ["UPPER_CASE"]
+      },
+      {
+        "selector": "enumMember",
+        "format": ["UPPER_CASE"]
+      },
+      {
+        "selector": "class",
+        "format": ["PascalCase"]
+      },
+      {
+        "selector": "parameter",
+        "format": ["camelCase"],
+        "leadingUnderscore": "allow"
+      },
+      {
+        "selector": "function",
+        "format": ["camelCase"]
+      },
+      {
+        "selector": "interface",
+        "format": ["StrictPascalCase"],
+        "prefix": ["I"]
+      },
+      {
+        "selector": "typeParameter",
+        "format": ["PascalCase"],
+        "prefix": ["T"]
+      }
+    ]
+  },
+  "env": {
+    "browser": true,
+    "node": true
+  }
+}

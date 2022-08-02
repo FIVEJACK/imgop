@@ -1,0 +1,36 @@
+{
+  "compilerOptions": {
+    "baseUrl": "./",
+    "incremental": false,
+    "declaration": true,
+    "outDir": "dist",
+    "allowJs": true,
+    "allowSyntheticDefaultImports": true,
+    "lib": ["ES2021"],
+    "target": "esnext",
+    "module": "commonjs",
+    "moduleResolution": "node",
+    "noEmit": false,
+    "noUnusedLocals": true,
+    "noUnusedParameters": true,
+    "noImplicitAny": true,
+    "preserveConstEnums": true,
+    "removeComments": true,
+    "skipLibCheck": true,
+    "sourceMap": true,
+    "sourceRoot": "https://github.com/FIVEJACK/imgop/tree/master/src",
+    "strict": true,
+    "isolatedModules": true,
+    "forceConsistentCasingInFileNames": true,
+    "esModuleInterop": true,
+    "resolveJsonModule": true,
+    "paths": {
+      "@/*": ["./src/*"],
+      "Config/*": ["./src/config/*"],
+      "Helpers/*": ["./src/helpers/*"],
+      "Server/*": ["./src/server/*"],
+    }
+  },
+  "include": ["**/*.ts","**/*.tsx"],
+  "exclude": ["node_modules", "dist"]
+}
