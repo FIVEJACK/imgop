@@ -6,23 +6,25 @@ import BugsnagPluginAwsLambda from '@bugsnag/plugin-aws-lambda';
 // Init App Server
 let appServer = null;
 if (appConfig.server === 'lambda') {
-  const { server } = require('Server/lambda');
-  appServer = server;
-
-  const bugsnagHandler = Bugsnag?.getPlugin('awsLambda')?.createHandler();
-  if (bugsnagHandler) { module.exports.lambdaHandler = bugsnagHandler(server); }
+  appServer = require('Server/lambda');
   exports.handler = appServer;
 } else {
-  const { server } = require('Server/http-server');
-  appServer = server;
+  appServer = require('Server/http-server');
 }
 
 // Run bugsnag
 if (appConfig.bugsnagKey) {
   Bugsnag.start({
+    releaseStage: appConfig.environment,
+    enabledReleaseStages: ['production', 'beta'],
     apiKey: appConfig.bugsnagKey,
     plugins: [BugsnagPluginAwsLambda],
   });
+
+  if (appConfig.server === 'lambda') {
+    const bugsnagHandler = Bugsnag.getPlugin('awsLambda')?.createHandler();
+    module.exports.lambdaHandler = bugsnagHandler ? bugsnagHandler(appServer) : module.exports.lambdaHandler;
+  }
 }
 
 export default appServer;
