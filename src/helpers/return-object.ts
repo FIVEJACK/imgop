@@ -72,6 +72,7 @@ export default class ReturnObjectHelper {
 
   public getHeader() {
     const headers = { vary: 'Accept',
+      'access-control-allow-origin': '*',
       'content-type': this.contentType,
       'cache-control': this.cacheControl,
       'content-security-policy': this.csp } as any;
