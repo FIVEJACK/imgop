@@ -1,4 +1,3 @@
-require('@/bootstrap');
 import { parse as parseUrl } from 'url';
 import type { APIGatewayProxyEventV2, APIGatewayProxyStructuredResultV2 } from 'aws-lambda';
 import { IncomingMessage } from 'http';
