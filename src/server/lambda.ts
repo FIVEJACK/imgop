@@ -19,6 +19,7 @@ export const server = async (event: APIGatewayProxyEventV2): Promise<APIGatewayP
     toReturn.body = JSON.stringify(imgResult.data);
   }
 
+  console.log(toReturn);
   return toReturn;
 };
 
