@@ -1,9 +1,10 @@
 import { Pixel } from '@millihq/pixel-core';
-import nodeFetch from 'node-fetch';
 import { imageConfig, optimizerConfig } from 'Config/image';
 import { UrlWithParsedQuery } from 'url';
 import ReturnObject from 'Helpers/return-object';
 import { IncomingMessage } from 'http';
+import { nodeFetchWithRetry } from 'Helpers/fetch-helper';
+import { appConfig } from 'Config/app';
 
 // We use request to detect headers for polymorph transform, eg: webp for modern browser, jpg for old browser
 export const imageOptimizer = async (parsedUrl: UrlWithParsedQuery, req?: IncomingMessage) => {
@@ -46,15 +47,16 @@ export const imageOptimizer = async (parsedUrl: UrlWithParsedQuery, req?: Incomi
 };
 
 const fetchImage = async (_url: string) => {
-  const imageFetch = await nodeFetch(_url);
+  const imageFetch = await nodeFetchWithRetry(_url, appConfig.fetchRetry, { timeout: appConfig.fetchTimeout });
+
   let upstreamBuffer;
-  if (imageFetch.ok) {
+  if (imageFetch?.ok) {
     upstreamBuffer = Buffer.from(await imageFetch.arrayBuffer());
   }
 
   return {
-    ok: imageFetch.ok,
-    status: imageFetch.status,
+    ok: imageFetch?.ok,
+    status: imageFetch?.status,
     buffer: upstreamBuffer,
   };
 };

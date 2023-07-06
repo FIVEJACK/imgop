@@ -3,15 +3,16 @@ import type { APIGatewayProxyEventV2, APIGatewayProxyStructuredResultV2 } from '
 import { IncomingMessage } from 'http';
 import { imageOptimizer } from 'Helpers/image-optimizer';
 
-const logResut = (toReturn: any, unixTimeDiff: number) => {
+const logResut = (toReturn: any, params: any, unixTimeDiff: number) => {
   const toReturnBody: string = toReturn['body'];
 
-  console.table({
-    'Optimizing Duration (ms)': unixTimeDiff,
+  console.log({
+    'Optimize (ms)': unixTimeDiff,
     'Status Code': toReturn['statusCode'],
-    'Body (50 first char)': toReturnBody?.slice(0, 50),
+    'Body (50 char)': toReturnBody?.slice(0, 50),
     'Base64 Encoded': toReturn['isBase64Encoded'],
-    'Headers': toReturn['headers']
+    'header': toReturn['headers'],
+    'params': params
   })
 }
 
@@ -35,7 +36,7 @@ export const server = async (event: APIGatewayProxyEventV2): Promise<APIGatewayP
   }
 
   const optimizingDuration = endTime.getTime() - startTime.getTime();
-  logResut(toReturn, optimizingDuration);
+  logResut(toReturn, parsedUrl, optimizingDuration);
   return toReturn;
 };
 
